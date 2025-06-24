@@ -1,0 +1,138 @@
+[gd_scene load_steps=12 format=3 uid="uid://dx1vkce5vns8k"]
+
+[ext_resource type="Script" uid="uid://bn4cy3ulagj17" path="res://ui/menu/menu.gd" id="1_1brpx"]
+[ext_resource type="Texture2D" uid="uid://lmk15n3rj8i6" path="res://assets/img/background.png" id="2_pjjyy"]
+[ext_resource type="Theme" uid="uid://bopcflpdob05n" path="res://ui/ui_theme.tres" id="3_67opo"]
+[ext_resource type="Texture2D" uid="uid://0eo3osia6tl8" path="res://assets/img/background-Sheet.png" id="3_pjjyy"]
+[ext_resource type="Texture2D" uid="uid://bonwc1f5uwyeu" path="res://assets/img/star.png" id="4_k06v0"]
+[ext_resource type="PackedScene" uid="uid://bkpu1mykw1mv7" path="res://entities/cursor/cursor.tscn" id="5_pqn8s"]
+[ext_resource type="AudioStream" uid="uid://j6qgoa72molj" path="res://assets/songs/sfx/click.wav" id="6_eukeg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mycd"]
+atlas = ExtResource("3_pjjyy")
+region = Rect2(0, 0, 180, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_272bh"]
+atlas = ExtResource("3_pjjyy")
+region = Rect2(180, 0, 180, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vw27"]
+atlas = ExtResource("3_pjjyy")
+region = Rect2(360, 0, 180, 320)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_67opo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mycd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_272bh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vw27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_272bh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1brpx")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 180.0
+offset_bottom = 320.0
+scale = Vector2(1.00243, 1)
+texture = ExtResource("2_pjjyy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(1, 0.890196, 0.921569, 1)
+position = Vector2(90, 160)
+sprite_frames = SubResource("SpriteFrames_67opo")
+autoplay = "default"
+
+[node name="TitleContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 15.0
+offset_top = 65.0
+offset_right = -21.0
+offset_bottom = 108.0
+grow_horizontal = 2
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="TitleContainer"]
+layout_mode = 2
+theme = ExtResource("3_67opo")
+theme_override_colors/font_shadow_color = Color(0.922342, 0.280458, 1, 1)
+text = "Ballon
+Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Star" type="Sprite2D" parent="TitleContainer"]
+position = Vector2(131, 56)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_k06v0")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -186.0
+offset_bottom = -85.0
+grow_horizontal = 2
+grow_vertical = 0
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme = ExtResource("3_67opo")
+
+[node name="start" type="Button" parent="CenterContainer/ButtonsContainer"]
+layout_mode = 2
+text = "START"
+flat = true
+
+[node name="options" type="Button" parent="CenterContainer/ButtonsContainer"]
+layout_mode = 2
+text = "OPTIONS"
+flat = true
+
+[node name="credits" type="Button" parent="CenterContainer/ButtonsContainer"]
+layout_mode = 2
+text = "CREDITS"
+flat = true
+
+[node name="quit" type="Button" parent="CenterContainer/ButtonsContainer"]
+layout_mode = 2
+text = "QUIT"
+flat = true
+
+[node name="Cursor" parent="." instance=ExtResource("5_pqn8s")]
+position = Vector2(146, 121)
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_eukeg")
+volume_db = -22.829
+pitch_scale = 1.06
+
+[connection signal="button_up" from="CenterContainer/ButtonsContainer/start" to="." method="_on_start_button_up"]
+[connection signal="button_up" from="CenterContainer/ButtonsContainer/options" to="." method="_on_options_button_up"]
+[connection signal="button_up" from="CenterContainer/ButtonsContainer/credits" to="." method="_on_credits_button_up"]
+[connection signal="button_up" from="CenterContainer/ButtonsContainer/quit" to="." method="_on_quit_button_up"]

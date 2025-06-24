@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://brqx5uujy4e18"]
+
+[ext_resource type="Script" uid="uid://bonr2ujy6cahi" path="res://ui/options/options.gd" id="1_2j2dl"]
+[ext_resource type="Texture2D" uid="uid://lmk15n3rj8i6" path="res://assets/img/background.png" id="2_pjjyy"]
+[ext_resource type="Theme" uid="uid://bopcflpdob05n" path="res://ui/ui_theme.tres" id="3_67opo"]
+[ext_resource type="PackedScene" uid="uid://bkpu1mykw1mv7" path="res://entities/cursor/cursor.tscn" id="5_pqn8s"]
+[ext_resource type="AudioStream" uid="uid://j6qgoa72molj" path="res://assets/songs/sfx/click.wav" id="6_eukeg"]
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2j2dl")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.933333, 0.921569, 0.984314, 1)
+layout_mode = 0
+offset_right = 180.0
+offset_bottom = 320.0
+scale = Vector2(1.00243, 1)
+texture = ExtResource("2_pjjyy")
+
+[node name="back" type="Button" parent="."]
+layout_mode = 2
+offset_left = 50.0
+offset_top = 204.0
+offset_right = 129.0
+offset_bottom = 218.0
+theme = ExtResource("3_67opo")
+text = "BACK"
+flat = true
+
+[node name="Cursor" parent="." instance=ExtResource("5_pqn8s")]
+position = Vector2(146, 121)
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_eukeg")
+volume_db = -22.829
+pitch_scale = 1.06
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 30.0
+offset_top = 103.0
+offset_right = 144.0
+offset_bottom = 181.0
+theme = ExtResource("3_67opo")
+
+[node name="Music" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = " MUSIC"
+
+[node name="MusicSlider" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Effect" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = " EFFECT"
+
+[node name="EffectSlider" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+
+[connection signal="button_up" from="back" to="." method="_on_back_button_up"]
+[connection signal="changed" from="VBoxContainer/MusicSlider" to="." method="_on_music_slider_changed"]
+[connection signal="value_changed" from="VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/EffectSlider" to="." method="_on_effect_slider_value_changed"]

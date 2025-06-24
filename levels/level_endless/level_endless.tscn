@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://d31rprskyddg4"]
+
+[ext_resource type="PackedScene" uid="uid://b2aj4xc17wo5j" path="res://entities/balloon/balloon.tscn" id="1_17urv"]
+[ext_resource type="Script" uid="uid://bu45gqqncawm5" path="res://levels/level_endless/spawner.gd" id="1_ft2p1"]
+[ext_resource type="Script" uid="uid://d16vrhm3pb0x2" path="res://levels/level_endless/level_endless.gd" id="1_liv0q"]
+[ext_resource type="Script" uid="uid://b28yd07a5t0wx" path="res://levels/level_endless/player.gd" id="2_1tm2b"]
+[ext_resource type="PackedScene" uid="uid://bkpu1mykw1mv7" path="res://entities/cursor/cursor.tscn" id="2_p8rbs"]
+[ext_resource type="Theme" uid="uid://bopcflpdob05n" path="res://ui/ui_theme.tres" id="4_f2jix"]
+[ext_resource type="Script" uid="uid://fw8r2ji52ll1" path="res://levels/level_endless/score.gd" id="5_0ugkb"]
+[ext_resource type="Texture2D" uid="uid://6mxr3e4gxfwu" path="res://assets/img/hearth.png" id="8_xgdnu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_liv0q"]
+size = Vector2(180, 39)
+
+[node name="LevelEndless" type="Node2D"]
+script = ExtResource("1_liv0q")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.847059, 0.74902, 0.847059, 1)
+
+[node name="Player" type="Node" parent="."]
+script = ExtResource("2_1tm2b")
+
+[node name="Cursor" parent="Player" instance=ExtResource("2_p8rbs")]
+process_mode = 3
+top_level = true
+position = Vector2(82, 201)
+
+[node name="hitzone" type="Area2D" parent="Player"]
+
+[node name="Collision" type="CollisionShape2D" parent="Player/hitzone"]
+position = Vector2(90, -66)
+shape = SubResource("RectangleShape2D_liv0q")
+
+[node name="Spawner" type="Marker2D" parent="."]
+position = Vector2(94, 346)
+script = ExtResource("1_ft2p1")
+
+[node name="FirstBalloon" parent="." instance=ExtResource("1_17urv")]
+position = Vector2(83, 375)
+
+[node name="InterfaceLayer" type="CanvasLayer" parent="."]
+
+[node name="Score" type="Label" parent="InterfaceLayer"]
+offset_top = 63.0
+offset_right = 180.0
+offset_bottom = 86.0
+size_flags_horizontal = 4
+theme = ExtResource("4_f2jix")
+theme_override_colors/font_color = Color(0.960386, 0.890228, 0.897312, 1)
+text = "0"
+horizontal_alignment = 1
+script = ExtResource("5_0ugkb")
+
+[node name="Label" type="Label" parent="InterfaceLayer"]
+offset_left = 24.0
+offset_top = 8.0
+offset_right = 38.0
+offset_bottom = 25.0
+theme = ExtResource("4_f2jix")
+text = "0"
+
+[node name="Hearth" type="Sprite2D" parent="."]
+position = Vector2(14, 15)
+scale = Vector2(1.0625, 1.0625)
+texture = ExtResource("8_xgdnu")
+
+[connection signal="area_entered" from="Player/hitzone" to="Player" method="_on_hitzone_area_entered"]

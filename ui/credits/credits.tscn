@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=3 uid="uid://b80x36xobi10l"]
+
+[ext_resource type="Script" uid="uid://b1dm64gargyeu" path="res://ui/credits/credits.gd" id="1_xwmn8"]
+[ext_resource type="Texture2D" uid="uid://lmk15n3rj8i6" path="res://assets/img/background.png" id="2_fcydj"]
+[ext_resource type="Theme" uid="uid://bopcflpdob05n" path="res://ui/ui_theme.tres" id="3_jbsda"]
+[ext_resource type="Texture2D" uid="uid://bonwc1f5uwyeu" path="res://assets/img/star.png" id="4_0bcp5"]
+[ext_resource type="PackedScene" uid="uid://bkpu1mykw1mv7" path="res://entities/cursor/cursor.tscn" id="5_fcydj"]
+[ext_resource type="AudioStream" uid="uid://j6qgoa72molj" path="res://assets/songs/sfx/click.wav" id="6_jbsda"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xwmn8")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.933333, 0.921569, 0.984314, 1)
+layout_mode = 0
+offset_right = 180.0
+offset_bottom = 320.0
+texture = ExtResource("2_fcydj")
+
+[node name="Star" type="Sprite2D" parent="."]
+position = Vector2(145, 149)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_0bcp5")
+
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 96.0
+offset_right = -16.0
+offset_bottom = 139.0
+grow_horizontal = 2
+metadata/_edit_group_ = true
+
+[node name="credits" type="Label" parent="CenterContainer2"]
+layout_mode = 2
+theme = ExtResource("3_jbsda")
+text = "Made by
+vitin"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -152.0
+offset_bottom = -51.0
+grow_horizontal = 2
+grow_vertical = 0
+metadata/_edit_group_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme = ExtResource("3_jbsda")
+
+[node name="back" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "BACK"
+flat = true
+
+[node name="Cursor" parent="." instance=ExtResource("5_fcydj")]
+position = Vector2(-36, 190)
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_jbsda")
+
+[connection signal="button_up" from="CenterContainer/VBoxContainer/back" to="." method="_on_back_button_up"]
