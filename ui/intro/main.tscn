@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=3 uid="uid://cjksbc2jokg7r"]
 
-[ext_resource type="Texture2D" uid="uid://lmk15n3rj8i6" path="res://assets/img/background.png" id="1_0fbet"]
-[ext_resource type="Script" uid="uid://cy8rhkqyr1b4b" path="res://scripts/intro.gd" id="1_1bvp3"]
-[ext_resource type="Texture2D" uid="uid://cqwmu3rdd3j82" path="res://assets/img/ballon.png" id="3_lquwl"]
-[ext_resource type="Script" uid="uid://dcrqkq5qbmvan" path="res://scripts/ballon_cutescene.gd" id="4_7mycd"]
-[ext_resource type="Texture2D" uid="uid://0eo3osia6tl8" path="res://assets/img/background-Sheet.png" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://cy8rhkqyr1b4b" path="res://ui/intro/intro.gd" id="1_ro2k0"]
+[ext_resource type="Texture2D" uid="uid://lmk15n3rj8i6" path="res://assets/img/background.png" id="2_c2sx7"]
+[ext_resource type="Texture2D" uid="uid://0eo3osia6tl8" path="res://assets/img/background-Sheet.png" id="3_0cfby"]
+[ext_resource type="Texture2D" uid="uid://cqwmu3rdd3j82" path="res://assets/img/ballon.png" id="4_io6ew"]
+[ext_resource type="Script" uid="uid://dcrqkq5qbmvan" path="res://ui/intro/ballon_cutescene.gd" id="5_8us4l"]
 
 [sub_resource type="Animation" id="Animation_7a8ye"]
 length = 0.001
@@ -200,15 +200,15 @@ _data = {
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7mycd"]
-atlas = ExtResource("5_lquwl")
+atlas = ExtResource("3_0cfby")
 region = Rect2(0, 0, 180, 320)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_272bh"]
-atlas = ExtResource("5_lquwl")
+atlas = ExtResource("3_0cfby")
 region = Rect2(180, 0, 180, 320)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5vw27"]
-atlas = ExtResource("5_lquwl")
+atlas = ExtResource("3_0cfby")
 region = Rect2(360, 0, 180, 320)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kek77"]
@@ -238,7 +238,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_1bvp3")
+script = ExtResource("1_ro2k0")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -258,7 +258,7 @@ playback_auto_capture_transition_type = 3
 [node name="Sprite2D" type="Sprite2D" parent="AnimationPlayer"]
 visible = false
 position = Vector2(90, 261.135)
-texture = ExtResource("1_0fbet")
+texture = ExtResource("2_c2sx7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AnimationPlayer"]
 position = Vector2(90, 159.8)
@@ -270,5 +270,5 @@ frame_progress = 0.737108
 [node name="Ballon" type="Sprite2D" parent="AnimationPlayer"]
 position = Vector2(-29, 154)
 rotation = 0.466003
-texture = ExtResource("3_lquwl")
-script = ExtResource("4_7mycd")
+texture = ExtResource("4_io6ew")
+script = ExtResource("5_8us4l")

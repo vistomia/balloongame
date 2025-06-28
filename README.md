@@ -1,9 +1,9 @@
 <div align="center"> <a href="https://vistomia.itch.io/balloongame">
-    <img
-      src="https://github.com/vistomia/balloongame/blob/main/assets/img/banner.png"
-      width="650"
-      height="auto"
-    />
+	<img
+	  src="https://github.com/vistomia/balloongame/blob/main/assets/img/banner.png"
+	  width="650"
+	  height="auto"
+	/>
   </a>
 </div>
 

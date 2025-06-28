@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d31rprskyddg4"]
+[gd_scene load_steps=11 format=3 uid="uid://d31rprskyddg4"]
 
 [ext_resource type="PackedScene" uid="uid://b2aj4xc17wo5j" path="res://entities/balloon/balloon.tscn" id="1_17urv"]
 [ext_resource type="Script" uid="uid://bu45gqqncawm5" path="res://levels/level_endless/spawner.gd" id="1_ft2p1"]
@@ -11,6 +11,18 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_liv0q"]
 size = Vector2(180, 39)
+
+[sub_resource type="Environment" id="Environment_xgdnu"]
+background_mode = 3
+background_canvas_max_layer = 1
+tonemap_mode = 4
+tonemap_white = 11.98
+glow_intensity = 4.09
+glow_bloom = 0.08
+adjustment_enabled = true
+adjustment_brightness = 1.16
+adjustment_contrast = 1.16
+adjustment_saturation = 3.51
 
 [node name="LevelEndless" type="Node2D"]
 script = ExtResource("1_liv0q")
@@ -68,9 +80,15 @@ offset_bottom = 25.0
 theme = ExtResource("4_f2jix")
 text = "0"
 
-[node name="Hearth" type="Sprite2D" parent="."]
+[node name="Hearth" type="Sprite2D" parent="InterfaceLayer"]
 position = Vector2(14, 15)
 scale = Vector2(1.0625, 1.0625)
 texture = ExtResource("8_xgdnu")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(90, 160)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xgdnu")
 
 [connection signal="area_entered" from="Player/hitzone" to="Player" method="_on_hitzone_area_entered"]

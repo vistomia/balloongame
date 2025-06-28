@@ -15,17 +15,27 @@ run/main_scene="uid://cjksbc2jokg7r"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="uid://cqwmu3rdd3j82"
 
+[audio]
+
+buses/default_bus_layout=""
+
 [autoload]
 
-Global="*res://global/Global.tscn"
-Audio="*res://global/Audio.tscn"
+Audio="*res://global/audio/Audio.tscn"
 Config="*res://global/config.gd"
+Global="*res://global/Global.tscn"
 
 [display]
 
 window/size/viewport_width=180
 window/size/viewport_height=320
 window/stretch/mode="canvas_items"
+
+[file_customization]
+
+folder_colors={
+"res://dist/": "purple"
+}
 
 [input]
 

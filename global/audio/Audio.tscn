@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c84j4wer56fd4"]
+
+[ext_resource type="Script" uid="uid://covo2e1a74qx6" path="res://global/audio/audio.gd" id="2_pp76w"]
+[ext_resource type="AudioStream" uid="uid://d24m8h0dt7rn5" path="res://assets/songs/music.ogg" id="2_wotfy"]
+
+[node name="Audio" type="Node"]
+script = ExtResource("2_pp76w")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+scale = Vector2(1.00873, 1)
+stream = ExtResource("2_wotfy")
+volume_db = -4.0
+autoplay = true
+parameters/looping = true

@@ -1,8 +1,8 @@
 extends Control
 
 func _ready() -> void:
-	$VBoxContainer/score.text = str(Global.score)
-	$VBoxContainer/highScore.text = str(Global.high_score)
+	$CenterContainer/VBoxContainer/score.text = str(Global.score)
+	$CenterContainer/VBoxContainer/highScore.text = str(Global.high_score)
 
 func _on_yes_button_up() -> void:
 	get_tree().paused = false

@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dkpu18ar2h446"]
+[gd_scene load_steps=4 format=3 uid="uid://dkpu18ar2h446"]
 
 [ext_resource type="Script" uid="uid://c8qoywxto8aev" path="res://ui/game_over/game_over.gd" id="1_ns3eh"]
+[ext_resource type="Theme" uid="uid://bopcflpdob05n" path="res://ui/ui_theme.tres" id="2_5nexe"]
+[ext_resource type="AudioStream" uid="uid://bg5kk5arh801p" path="res://assets/songs/sfx/death.wav" id="3_4cp6t"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -11,42 +13,74 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ns3eh")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0358828, 1.72443e-06, 0.033012, 0.890196)
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme = ExtResource("2_5nexe")
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Score"
+horizontal_alignment = 1
 
-[node name="score" type="Label" parent="VBoxContainer"]
+[node name="score" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "0"
+horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="VBoxContainer"]
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "High Score"
+horizontal_alignment = 1
 
-[node name="highScore" type="Label" parent="VBoxContainer"]
+[node name="highScore" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "0"
+horizontal_alignment = 1
 
-[node name="Label3" type="Label" parent="VBoxContainer"]
+[node name="highScore2" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Play again?"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 process_mode = 3
 layout_mode = 2
 
-[node name="yes" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="yes" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "yes"
 
-[node name="no" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="no" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "no"
 
-[connection signal="button_up" from="VBoxContainer/HBoxContainer/yes" to="." method="_on_yes_button_up"]
-[connection signal="button_up" from="VBoxContainer/HBoxContainer/no" to="." method="_on_no_button_up"]
+[node name="Death" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(263, 163)
+stream = ExtResource("3_4cp6t")
+pitch_scale = 2.11
+autoplay = true
+
+[connection signal="button_up" from="CenterContainer/VBoxContainer/HBoxContainer/yes" to="." method="_on_yes_button_up"]
+[connection signal="button_up" from="CenterContainer/VBoxContainer/HBoxContainer/no" to="." method="_on_no_button_up"]

@@ -7,7 +7,6 @@ var BalloonScene = preload("res://entities/balloon/balloon.tscn")  # Pré-carreg
 func _process(delta: float) -> void:
 	time += delta
 	time_played += delta
-	print(time_played	)
 	if time > clamp(6.0 - log(1.0 + time_played) * 1.5, 0.4, 6.0):
 		time = 0
 		spawn_balloon()

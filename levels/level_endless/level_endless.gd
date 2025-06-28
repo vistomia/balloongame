@@ -6,6 +6,7 @@ func _ready() -> void:
 	get_tree().paused = false
 
 func _process(delta: float) -> void:
+	print(Engine.get_frames_per_second())
 	if Input.is_action_just_pressed("esc"):
 		get_tree().change_scene_to_file("res://ui/menu/menu.tscn")
 	
